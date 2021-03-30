@@ -1,7 +1,6 @@
 @extends('layout.app')
-@push('body_class')
-    bg-light
-@endpush
+@section('title') register @endsection
+@push('body_class') bg-light @endpush
 @section('content')
     <main class="main h-100" role="main">
         <div class="container h-100">
@@ -18,22 +17,26 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="m-sm-4">
-                                <form>
+                                @include('partials.errors')
+                            </div>
+                            <div class="m-sm-4">
+                                <form action="{{ action('\App\Http\Controllers\Auth\AuthController@process_register') }}" method="post">
+                                    @csrf
                                     <div class="form-group">
-                                        <label>Name</label>
-                                        <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                                        <label for="name">Name</label>
+                                        <input @if($errors->has('name'))  style="border:2px solid red" @endif id="name" class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" value="{{old('name')}}">
                                     </div>
                                     <div class="form-group">
-                                        <label>Company</label>
-                                        <input class="form-control form-control-lg" type="text" name="company" placeholder="Enter your company name">
+                                        <label for="company">Company</label>
+                                        <input @if($errors->has('company'))  style="border:2px solid red" @endif id="company" class="form-control form-control-lg" type="text" name="company" value="{{old('company')}}" placeholder="Enter your company name">
                                     </div>
                                     <div class="form-group">
-                                        <label>Email</label>
-                                        <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email">
+                                        <label for="email">Email</label>
+                                        <input @if($errors->has('email'))  style="border:2px solid red" @endif id="email" class="form-control form-control-lg" type="email" name="email" value="{{old('email')}}" placeholder="Enter your email">
                                     </div>
                                     <div class="form-group">
-                                        <label>Password</label>
-                                        <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" autocomplete="off" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                                        <label for="password">Password</label>
+                                        <input @if($errors->has('password'))  style="border:2px solid red" @endif class="form-control form-control-lg" type="password" id="password" name="password" value="{{old('password')}}" placeholder="Enter password">
                                     </div>
                                     <div class="text-center mt-3">
                                         <a href="{{ action('\App\Http\Controllers\Auth\AuthController@show_login_form') }}" class="btn btn-lg btn-primary">log in</a>

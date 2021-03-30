@@ -1,7 +1,8 @@
 <nav class="navbar navbar-lg navbar-expand-lg navbar-dark bg-info">
     <div class="container">
         <a class="navbar-brand" href="{{ action('\App\Http\Controllers\HomeController@index') }}">Share it !</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -11,7 +12,8 @@
                     <a class="nav-link" href="https://robust.bootlab.io/index.html">Overview</a>
                 </li>
                 <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="https://robust.bootlab.io/demo-social.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="https://robust.bootlab.io/demo-social.html#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Pages
                     </a>
                     <div class="dropdown-menu">
@@ -21,19 +23,44 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="https://robust.bootlab.io/demo-social.html#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="https://robust.bootlab.io/demo-social.html#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Components
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="https://robust.bootlab.io/components-bootstrap.html">Bootstrap</a>
+                        <a class="dropdown-item"
+                           href="https://robust.bootlab.io/components-bootstrap.html">Bootstrap</a>
                         <a class="dropdown-item" href="https://robust.bootlab.io/components-robust.html">Robust</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://robust.bootlab.io/index.html">Log in</a>
-                </li>
+                @if(!auth()->check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('login')}}">Log in</a>
+                    </li>
+                @endif
             </ul>
-            <a class="btn btn-outline-white" href="https://themes.getbootstrap.com/product/robust-ui-kit-dashboard-landing/" target="_blank">Register</a>
+            @if(auth()->check())
+                <div class="dropdown show">
+                    <button class="btn btn-outline-white dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                        My account
+                    </button>
+                    <div class="dropdown-menu show">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Analytics</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Settings &amp; Privacy</a>
+                        <a class="dropdown-item" href="#">Help</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            @endif
+            @if(!auth()->check())
+                <a class="btn btn-outline-white" href="{{route('register')}}" target="_blank">Register</a>
+            @endif
         </div>
     </div>
 </nav>
