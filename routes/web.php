@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +28,9 @@ Route::namespace('Auth')->group(function () {
     Route::get('/register',[AuthController::class,'show_register_form'])->name('register');
     Route::post('/register',[AuthController::class,'process_register'])->name('register');
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/upload_file',[UploadController::class,'show_upload_form'])->name('show_upload_form');
+    Route::post('/upload_file',[UploadController::class,'process_upload_file'])->name('process_upload_file');
 });

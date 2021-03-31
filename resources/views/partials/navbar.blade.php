@@ -8,6 +8,11 @@
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ml-auto">
+                @if(auth()->check())
+                    <li class="nav-item">
+                        <a class="btn btn-outline-white" href="{{route('show_upload_form')}}">Upload file</a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href="https://robust.bootlab.io/index.html">Overview</a>
                 </li>
@@ -40,18 +45,18 @@
                 @endif
             </ul>
             @if(auth()->check())
-                <div class="dropdown show">
+                <div class="dropdown">
                     <button class="btn btn-outline-white dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true">
                         My account
                     </button>
-                    <div class="dropdown-menu show">
+                    <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">Analytics</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Settings &amp; Privacy</a>
                         <a class="dropdown-item" href="#">Help</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                        <a class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
