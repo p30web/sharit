@@ -12,32 +12,13 @@
                     <li class="nav-item">
                         <a class="btn btn-outline-white" href="{{route('show_upload_form')}}">Upload file</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('my_files')}}">MyFiles</a>
+                    </li>
                 @endif
-                <li class="nav-item">
-                    <a class="nav-link" href="https://robust.bootlab.io/index.html">Overview</a>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="https://robust.bootlab.io/demo-social.html#" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Pages
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="https://robust.bootlab.io/pages-landing.html">Landing</a>
-                        <a class="dropdown-item" href="https://robust.bootlab.io/pages-dashboard.html">Dashboard</a>
-                        <a class="dropdown-item" href="https://robust.bootlab.io/pages-general.html">General</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="https://robust.bootlab.io/demo-social.html#" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Components
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item"
-                           href="https://robust.bootlab.io/components-bootstrap.html">Bootstrap</a>
-                        <a class="dropdown-item" href="https://robust.bootlab.io/components-robust.html">Robust</a>
-                    </div>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('about_us')}}">About us</a>
+                    </li>
                 @if(!auth()->check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Log in</a>
@@ -51,11 +32,8 @@
                         My account
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Analytics</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Settings &amp; Privacy</a>
-                        <a class="dropdown-item" href="#">Help</a>
+                        <a class="dropdown-item" href="{{route('show_upload_form')}}">Upload file</a>
+                        <a class="dropdown-item" href="{{route('my_files')}}">MyFiles</a>
                         <a class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

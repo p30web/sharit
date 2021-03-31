@@ -20,4 +20,17 @@ class FileController extends Controller
             'file' => $file
         ]);
     }
+
+    public function my_files(){
+        $files = File::query()->get();
+
+        return view('pages.my_files',[
+            'files' => $files
+        ]);
+    }
+
+    public function destroy(File $file){
+        $file->delete();
+        return redirect()->action('\App\Http\Controllers\FileController@my_files')->with("successful", "The file was successfully deleted");
+    }
 }
