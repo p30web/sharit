@@ -20,14 +20,17 @@ class AuthController extends Controller
         return view('pages.auth.register');
     }
 
+    /**
+     * @noinspection PhpUndefinedFieldInspection
+     */
     public function process_login(Request $request){
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials,$request->has('remember_me'))) {
             return redirect('/');
         }
 
-        return redirect('login');
+        return redirect()->back()->with('error','login failed ...')->withInput();
     }
 
     /**
