@@ -40,7 +40,10 @@
                                 <h5 class="card-title">Rules upload files : </h5>
                                 <ul>
                                     <li>
-                                        <small>For best results, use an image at least 128px by 128px in .jpg format</small>
+                                        <small>File should not be larger than 10 MB</small>
+                                    </li>
+                                    <li>
+                                        <small>Unauthorized formats: <span style="color:red">exe, .bmp , .php</span></small>
                                     </li>
                                 </ul>
                             </div>
@@ -53,14 +56,14 @@
 @endsection
 @push('footer_scripts')
     <script>
-        // $('input[type="file"]').change(function () {
-        //     let ext = $('#file').val().split('.').pop().toLowerCase();
-        //     let rejectFormat = ['exe','php','bmp']
-        //     if(!$.inArray(ext,rejectFormat)){
-        //         alert('Please upload excel file only.');
-        //         $('#file').val('');
-        //         return false;
-        //     }
-        // });
+        $('input[type="file"]').change(function () {
+            let ext = $('#file').val().split('.').pop().toLowerCase();
+            let rejectFormat = ['exe','php','bmp']
+            if(!$.inArray(ext,rejectFormat)){
+                alert('Please upload excel file only.');
+                $('#file').val('');
+                return false;
+            }
+        });
     </script>
 @endpush

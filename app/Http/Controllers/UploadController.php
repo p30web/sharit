@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\File;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UploadController extends Controller
 {
@@ -11,6 +16,7 @@ class UploadController extends Controller
         return view('pages.upload_form');
     }
 
+    /** @noinspection PhpUndefinedFieldInspection */
     public function process_upload_file(Request $request){
 
         $rejectMimTypes = [
@@ -29,11 +35,23 @@ class UploadController extends Controller
             ]
         ]);
 
+        $fileType = $request->file('file')->getMimeType();
+
         $fileName = time().'.'.$request->file('file')->extension();
 
-        $request->file('file')->move(public_path('uploads'), $fileName);
+        $url = $request->file('file')->storeAs(Carbon::now()->year . '/' . Carbon::now()->month, $fileName, 'public');
 
-        return back()
+        $file = File::query()->create([
+            'name' => $request->file('file')->getClientOriginalName(),
+            'url' => $url,
+            'size' => $request->file('file')->getSize(),
+            'uniq_id' => Str::random(7),
+            'file_type' => $fileType,
+            'uploaded_by' => Auth::id(),
+            'ip' => $request->ip()
+        ]);
+
+        return redirect()->action('\App\Http\Controllers\FileController@show_file',$file->uniq_id)
             ->with('successful','You have successfully upload file.')
             ->with('file',$fileName);
 
