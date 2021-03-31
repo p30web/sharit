@@ -60,7 +60,7 @@
             let ext = $('#file').val().split('.').pop().toLowerCase();
             let rejectFormat = ['exe','php','bmp']
             if(!$.inArray(ext,rejectFormat)){
-                alert('Please upload excel file only.');
+                alert('File extension is not allowed.');
                 $('#file').val('');
                 return false;
             }

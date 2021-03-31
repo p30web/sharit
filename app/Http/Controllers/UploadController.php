@@ -21,7 +21,14 @@ class UploadController extends Controller
 
         $rejectMimTypes = [
             'application/x-ms-dos-executable',
-            'text/x-python'
+            'text/x-python',
+            'image/bmp',
+            'text/php',
+            'text/x-php',
+            'application/php',
+            'application/x-php',
+            'application/x-httpd-php',
+            'application/x-httpd-php-source',
         ];
 
         $this->validate($request,[
