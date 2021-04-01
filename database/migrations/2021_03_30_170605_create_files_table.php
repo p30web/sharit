@@ -25,7 +25,8 @@ class CreateFilesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->integer('view_count')->default(0);
+            $table->integer('visit_count')->default(0);
+            $table->integer('download_count')->default(0);
             $table->string('ip')->nullable();
             $table->softDeletes();
             $table->timestamps();

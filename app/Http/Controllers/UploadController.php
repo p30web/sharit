@@ -21,8 +21,10 @@ class UploadController extends Controller
 
         $rejectMimTypes = [
             'application/x-ms-dos-executable',
+            'application/x-dosexec',
             'text/x-python',
             'image/bmp',
+            'image/x-ms-bmp',
             'text/php',
             'text/x-php',
             'application/php',
@@ -33,7 +35,9 @@ class UploadController extends Controller
 
         $this->validate($request,[
             'file' => [
-                'required','file','max:10240',
+                'required',
+                'file',
+                'max:10240',
                 function ($attribute, $value, $fail) use($request,$rejectMimTypes) {
                     if(in_array($value->getMimeType(),$rejectMimTypes)){
                         $fail('The '.$attribute.' is invalid : file format is incorrect');
@@ -58,10 +62,12 @@ class UploadController extends Controller
             'ip' => $request->ip()
         ]);
 
-        return redirect()->action('\App\Http\Controllers\FileController@show_file',$file->uniq_id)
-            ->with('successful','You have successfully upload file.')
-            ->with('file',$fileName);
-
-        return redirect()->back()->withInput();
+        if($file){
+            return redirect()
+                ->action('\App\Http\Controllers\FileController@show_file',$file->uniq_id)
+                ->with('successful','You have successfully upload file.');
+        }else{
+            return redirect()->back()->with('error','upload failed ...')->withInput();
+        }
     }
 }

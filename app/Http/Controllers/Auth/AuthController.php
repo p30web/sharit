@@ -9,14 +9,21 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class AuthController
+ * @package App\Http\Controllers\Auth
+ */
 class AuthController extends Controller
 {
     public function show_login_form()
     {
+        if(Auth::check()) return redirect('/');
         return view('pages.auth.login');
+
     }
 
     public function show_register_form(){
+        if(Auth::check()) return redirect('/');
         return view('pages.auth.register');
     }
 
@@ -25,11 +32,12 @@ class AuthController extends Controller
      */
     public function process_login(Request $request){
         $credentials = $request->only('email', 'password');
-
         if (Auth::attempt($credentials,$request->has('remember_me'))) {
+            $user = User::query()->find(Auth::id());
+            $user->last_login = now();
+            $user->seve();
             return redirect('/');
         }
-
         return redirect()->back()->with('error','login failed ...')->withInput();
     }
 
@@ -55,9 +63,7 @@ class AuthController extends Controller
 
         Auth::loginUsingId($user->id);
 
-        if($user){
-            return redirect('/');
-        }else{
+        if($user) return redirect('/'); else{
             return redirect()->back()->with('error','register error ...');
         }
 
@@ -66,7 +72,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-
         return redirect('/');
     }
 }

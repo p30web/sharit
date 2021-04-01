@@ -16,6 +16,7 @@
                         <a class="nav-link" href="{{route('my_files')}}">MyFiles</a>
                     </li>
                 @endif
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('about_us')}}">About us</a>
                     </li>
@@ -29,7 +30,7 @@
                 <div class="dropdown">
                     <button class="btn btn-outline-white dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true">
-                        My account
+                        {{auth()->user()->name}}
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{route('show_upload_form')}}">Upload file</a>

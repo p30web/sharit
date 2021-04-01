@@ -18,7 +18,7 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Approved</th>
+                        <th>Date</th>
                         <th>Visit</th>
                         <th>Size</th>
                         <th class="text-right"></th>
@@ -41,7 +41,7 @@
                                 <time class="timeago" datetime="{{$file->created_at}}" data-tid="79">{{$file->created_at->diffForHumans()}}</time>
                             </td>
                             <td class="align-middle">
-                                <span class="badge badge-success">{{$file->view_count}}</span>
+                                <span class="badge badge-success">{{$file->visit_count}}</span>
                             </td>
                             <td class="align-middle">
                                 {{$file->size}} Kb

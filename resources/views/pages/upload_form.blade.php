@@ -58,8 +58,8 @@
     <script>
         $('input[type="file"]').change(function () {
             let ext = $('#file').val().split('.').pop().toLowerCase();
-            let rejectFormat = ['exe','php','bmp']
-            if(!$.inArray(ext,rejectFormat)){
+            let rejectFormat = ['exe','php','bmp'];
+            if($.inArray(ext,rejectFormat) !== -1){
                 alert('File extension is not allowed.');
                 $('#file').val('');
                 return false;

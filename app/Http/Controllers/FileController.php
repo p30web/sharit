@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -12,7 +15,7 @@ class FileController extends Controller
     {
         $file = File::query()->where('uniq_id',$uniq_id)->with('user')->firstOrFail();
 
-        $file->view_count = $file->view_count + 1;
+        $file->visit_count = $file->visit_count + 1;
 
         $file->save();
 
@@ -22,15 +25,31 @@ class FileController extends Controller
     }
 
     public function my_files(){
-        $files = File::query()->get();
+        $files = File::query()->where('uploaded_by',Auth::id())->get();
 
         return view('pages.my_files',[
             'files' => $files
         ]);
     }
 
-    public function destroy(File $file){
-        $file->delete();
-        return redirect()->action('\App\Http\Controllers\FileController@my_files')->with("successful", "The file was successfully deleted");
+    public function destroy(File $file): \Illuminate\Http\RedirectResponse
+    {
+        try {
+            $this->authorize('delete', $file);
+            $file->delete();
+            return redirect()
+                ->action('\App\Http\Controllers\FileController@my_files')
+                ->with("successful", "The file was successfully deleted");
+        }  catch (\Exception $e) {
+            report($e);
+        }
+    }
+
+    public function download_file(File $file): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        $file->download_count = $file->download_count +1;
+        $file->save();
+        $fileUrl = Storage::disk('public')->getAdapter()->getPathPrefix() . $file->url;
+        return response()->download($fileUrl, $file->name);
     }
 }

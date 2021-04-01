@@ -38,6 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/delete_file/{file}',[FileController::class,'destroy'])->name('delete_file');
 
 });
+
 Route::get('about_us',[HomeController::class,'about_us'])->name('about_us');
+Route::get('download_file/{file}',[FileController::class,'download_file'])->name('download_file');
 Route::get('/{uniq_id}',[FileController::class,'show_file'])->name('show_file');
+
+
 
