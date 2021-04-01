@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,8 @@ class FileController extends Controller
     }
 
     public function my_files(){
-        $files = File::query()->where('uploaded_by',Auth::id())->get();
+
+        $files = Auth::user()->files;
 
         return view('pages.my_files',[
             'files' => $files

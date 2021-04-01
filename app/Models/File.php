@@ -28,7 +28,8 @@ class File extends Model
         'download_count'
     ];
 
-    public function user(){
-        return $this->hasOne(User::class,'id','uploaded_by');
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'uploaded_by');
     }
 }
