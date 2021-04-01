@@ -1,62 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Hi:
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Description
 
-## About Laravel
+“Share it!”
+1. Any user can register and start sharing their files.
+2. Immediately after registration the user should see the button
+   "Upload file". After clicking on this button, the user should be
+   redirected to the page with the file upload form.
+3. The form is represented by one single field - <input type="file">.
+   The uploaded file must be no more than 10Mb and must not have
+   the .exe, .bmp or .php extensions.
+4. After successful uploading of the file, the user should be given a
+   unique short link to the file like “http://domain.com/1bh0k2I”. He
+   can share it with other users. When clicking on this link, application
+   should show a page with information about the file (the original
+   name and time of upload), as well as the ability to download it.
+   Regardless of whether the user is authorized or not.
+5. A registered user should be able to view the list of files uploaded
+   by him, as well as the possibility to delete them. It should be
+   available by clicking on the "My files" button. Application should
+   also count the number of downloads of files.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Requirements:
+- Technologies: PHP, MySQL, JS, CSS, HTML
+- Libraries: Laravel 6.x, Twitter Bootstrap or Material, jQuery
+- Using of migration for the database
+- The result of the work should be published through Git (GitHub /BitBucket)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Serve Project :
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### 1- composer install :
 
-## Learning Laravel
+`composer install`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### 2- Complete the env file :
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+######  2.1: the root directory of your application will contain a .env.example file
 
-## Laravel Sponsors
+Rename it to .env
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+###### 2.2 : Enter your project address instead of APP_URL :
 
-### Premium Partners
+> example : http://shareit.local
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+###### 2.3 : Generate APP_KEY :
 
-## Contributing
+`php artisan key:generate`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+###### 2.4 : Complete database information :
 
-## Code of Conduct
+This section must be completed :
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=share_it
+DB_USERNAME=root
+DB_PASSWORD=root
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### 3- migrate :
 
-## License
+`php artisan migrate`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### 4- create or Cheek Directory  :
+
+Check that these folders are available
+
+- public/uploads
+
+Its access level must be: 777
+
+- storage/logs
+
+Its access level must be: 777
+
+- storage/framework
+
+Its access level must be: 777
+
+- storage/framework/sessions
+
+Its access level must be: 777
+
+#### 5- serve  :
+
+`php artisan serve`
+
+
+### Ui-kit : 
+
+ui kit used : https://themes.getbootstrap.com/product/robust-ui-kit-dashboard-landing/
+
+
+## Supports :
+
+Email : blackhat1520@gmail.com
+
+New issues : https://github.com/p30web/Laravel-Project/issues
