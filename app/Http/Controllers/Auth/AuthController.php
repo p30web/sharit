@@ -34,8 +34,8 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials,$request->has('remember_me'))) {
             $user = User::query()->find(Auth::id());
-            $user->last_login = now();
-            $user->seve();
+            $user->last_login_at = now();
+            $user->save();
             return redirect('/');
         }
         return redirect()->back()->with('error','login failed ...')->withInput();
