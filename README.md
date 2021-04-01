@@ -51,13 +51,17 @@ Rename it to .env
 
 This section must be completed :
 
-> DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=share_it
-DB_USERNAME=root
-DB_PASSWORD=root
+DB_CONNECTION=mysql
 
+DB_HOST=mysql
+
+DB_PORT=3306
+
+DB_DATABASE=share_it
+
+DB_USERNAME=root
+
+DB_PASSWORD=root
 
 #### 3- migrate :
 
@@ -92,6 +96,9 @@ Its access level must be: 777
 
 ui kit used : https://themes.getbootstrap.com/product/robust-ui-kit-dashboard-landing/
 
+### Db-diagram :
+
+dbdiagram : https://dbdiagram.io/d/6065972cecb54e10c33e4755
 
 ## Supports :
 
