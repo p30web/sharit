@@ -20,6 +20,7 @@
                         <th>Name</th>
                         <th>Date</th>
                         <th>Visit</th>
+                        <th>Download</th>
                         <th>Size</th>
                         <th class="text-right"></th>
                     </tr>
@@ -42,6 +43,9 @@
                             </td>
                             <td class="align-middle">
                                 <span class="badge badge-success">{{$file->visit_count}}</span>
+                            </td>
+                            <td class="align-middle">
+                                <span class="badge badge-success">{{$file->download_count}}</span>
                             </td>
                             <td class="align-middle">
                                 {{$file->size}} Kb

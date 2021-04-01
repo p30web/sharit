@@ -38,8 +38,8 @@
                                 </div>
                                 <hr class="my-0">
                                 <br>
-                                <p>Visit : <span class="badge badge-primary">{{$file->visit_count}}</span></p>
-                                <p>download_count : <span class="badge badge-primary">{{$file->download_count}}</span></p>
+                                <p>Visit count: <span class="badge badge-primary">{{$file->visit_count}}</span></p>
+                                <p>Download count : <span class="badge badge-primary">{{$file->download_count}}</span></p>
                                 <p>File Name : {{$file->name}}</p>
                                 <p>File size : {{$file->size}} Kb</p>
                                 <p>File Format : {{$file->file_type}}</p>
